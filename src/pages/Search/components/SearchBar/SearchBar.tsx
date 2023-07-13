@@ -1,5 +1,4 @@
 import React from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 
 import styles from './SearchBar.module.css';
 
@@ -23,7 +22,7 @@ const SearchBar = ({ searchKeyword, onEnter, onChange, onSearch }: SearchbarProp
           onChange={onChange}
         />
         <button className={styles.searchButton} type="button" onClick={onSearch}>
-          <AiOutlineSearch color="white" size="2rem" />
+          <div style={{ display: 'inline-block', width: 24, height: 24 }} />
         </button>
       </div>
     </section>

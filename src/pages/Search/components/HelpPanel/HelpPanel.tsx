@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { AiOutlineInfo, AiOutlineClose } from 'react-icons/ai';
 import classNames from 'classnames/bind';
 
 import { artists } from '../../../../constants/artistData';
@@ -15,7 +14,7 @@ const HelpPanel = () => {
   return (
     <>
       <button type="button" className={styles.floatingButton} onClick={openSheet}>
-        <AiOutlineInfo color="white" size="24px" />
+        <div style={{ display: 'inline-block', width: 24, height: 24 }} />
       </button>
       <section
         className={classNames(styles.selectedItemContainer, {
@@ -25,7 +24,7 @@ const HelpPanel = () => {
         <div className={styles.sheetTitleContainer}>
           <h4>What's all this? </h4>
           <button type="button" onClick={closeSheet}>
-            <AiOutlineClose size="24px" />
+            <div style={{ display: 'inline-block', width: 24, height: 24 }} />
           </button>
         </div>
         <div className={styles.sheetContentsContainer}>
