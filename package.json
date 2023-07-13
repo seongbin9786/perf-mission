@@ -4,9 +4,9 @@
   "description": "frontend-performance-basecamp",
   "main": "index.tsx",
   "scripts": {
-    "build": "webpack --mode=production --node-env=production",
+    "build": "NODE_ENV=development webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
+    "build:prod": "NODE_ENV=development webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve --mode=development",
     "prettier": "prettier --write ."

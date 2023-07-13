@@ -25,8 +25,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: './public', to: './public' }]
     }),
-    new Dotenv()
-  ],
+    process.NODE_ENV === "production" ? false : new Dotenv()
+  ].filter(Boolean),
   module: {
     rules: [
       {
