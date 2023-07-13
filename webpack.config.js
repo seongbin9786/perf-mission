@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: './src/index.tsx',
@@ -25,7 +26,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: './public', to: './public' }]
     }),
-    process.NODE_ENV === "production" ? false : new Dotenv()
+    process.NODE_ENV === "production" ? false : new Dotenv(),
+    new BundleAnalyzerPlugin(),
   ].filter(Boolean),
   module: {
     rules: [
