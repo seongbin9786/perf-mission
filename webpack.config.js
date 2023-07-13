@@ -27,7 +27,7 @@ module.exports = {
       patterns: [{ from: './public', to: './public' }]
     }),
     process.NODE_ENV === "production" ? false : new Dotenv(),
-    new BundleAnalyzerPlugin(),
+    process.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin(),
   ].filter(Boolean),
   module: {
     rules: [
