@@ -2,13 +2,17 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const dotenvPlugin = new Dotenv();
+// prod 에선 .env 안 씀
+const envPlugin = process.env.NODE_ENV === "production" ? new DefinePlugin({
+  GIPHY_API_KEY: process.env.GIPHY_API_KEY
+}) : new Dotenv();
 const analyzerPlugin = process.env.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin();
 
 console.log(process.env.NODE_ENV);
-console.log("dotenvPlugin:", dotenvPlugin);
+console.log("envPlugin:", envPlugin);
 console.log("analyzerPlugin:", analyzerPlugin);
 
 module.exports = {
@@ -33,7 +37,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: './public', to: './public' }]
     }),
-    dotenvPlugin,
+    envPlugin,
     analyzerPlugin
   ].filter(Boolean),
   module: {
