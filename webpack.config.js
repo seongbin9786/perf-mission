@@ -4,6 +4,13 @@ const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const dotenvPlugin = process.env.NODE_ENV === "production" ? false : new Dotenv();
+const analyzerPlugin = process.env.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin();
+
+console.log(process.env.NODE_ENV);
+console.log("dotenvPlugin:", dotenvPlugin);
+console.log("analyzerPlugin:", analyzerPlugin);
+
 module.exports = {
   entry: './src/index.tsx',
   resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
@@ -26,8 +33,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: './public', to: './public' }]
     }),
-    process.env.NODE_ENV === "production" ? false : new Dotenv(),
-    process.env.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin(),
+    dotenvPlugin,
+    analyzerPlugin
   ].filter(Boolean),
   module: {
     rules: [
