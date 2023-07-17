@@ -26,8 +26,8 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: './public', to: './public' }]
     }),
-    process.NODE_ENV === "production" ? false : new Dotenv(),
-    process.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin(),
+    process.env.NODE_ENV === "production" ? false : new Dotenv(),
+    process.env.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin(),
   ].filter(Boolean),
   module: {
     rules: [
