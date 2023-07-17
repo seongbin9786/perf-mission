@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const dotenvPlugin = process.env.NODE_ENV === "production" ? false : new Dotenv();
+const dotenvPlugin = new Dotenv();
 const analyzerPlugin = process.env.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin();
 
 console.log(process.env.NODE_ENV);
