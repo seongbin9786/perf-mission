@@ -4,10 +4,10 @@
   "description": "frontend-performance-basecamp",
   "main": "index.tsx",
   "scripts": {
-    "build": "npx webpack",
+    "build": "npx webpack --mode=production",
     "build:dev": "webpack --mode=development",
-    "build:prod": "NODE_ENV=production && webpack",
-    "watch": "webpack --watch",
+    "build:prod": "NODE_ENV=production && webpack --mode=production",
+    "watch": "webpack --watch --mode=development",
     "serve": "webpack serve --compress --mode=development",
     "prettier": "prettier --write ."
   },
