@@ -7,7 +7,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 // prod 에선 .env 안 씀
 const envPlugin = process.env.NODE_ENV === "production" ? new DefinePlugin({
-  GIPHY_API_KEY: process.env.GIPHY_API_KEY
+  GIPHY_API_KEY: JSON.stringify(process.env.GIPHY_API_KEY)
 }) : new Dotenv();
 const analyzerPlugin = process.env.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin();
 
