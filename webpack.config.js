@@ -5,15 +5,24 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const isProd = process.env.NODE_ENV === 'production';
+
 // prod 에선 .env 안 씀
-const envPlugin = process.env.NODE_ENV === "production" ? new DefinePlugin({
-  "process.env.GIPHY_API_KEY": JSON.stringify(process.env.GIPHY_API_KEY)
-}) : new Dotenv();
-const analyzerPlugin = process.env.NODE_ENV === "production" ? false : new BundleAnalyzerPlugin();
+const envPlugin = isProd
+  ? new DefinePlugin({
+      'process.env.GIPHY_API_KEY': JSON.stringify(process.env.GIPHY_API_KEY)
+    })
+  : new Dotenv();
+
+const analyzerPlugin = isProd ? false : new BundleAnalyzerPlugin();
 
 console.log(process.env.NODE_ENV);
-console.log("envPlugin:", envPlugin);
-console.log("analyzerPlugin:", analyzerPlugin);
+console.log('envPlugin:', envPlugin);
+console.log('analyzerPlugin:', analyzerPlugin);
+
+const DEV_URL = 'http://localhost:8080';
+const PROD_URL = 'https://perf-mission.vercel.app';
+const URL = isProd ? PROD_URL : DEV_URL;
 
 module.exports = {
   entry: './src/index.tsx',
@@ -32,6 +41,12 @@ module.exports = {
   devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
+      filename: 'index.html',
+      custom: `<link rel="preload" as="image" href="${URL}/static/hero.jpg">`,
+      template: './index.html'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'search.html',
       template: './index.html'
     }),
     new CopyWebpackPlugin({
