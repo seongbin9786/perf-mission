@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx webpack",
     "build:dev": "webpack --mode=development",
-    "build:prod": "NODE_ENV=production && webpack --mode=production --node-env=production",
+    "build:prod": "NODE_ENV=production && webpack",
     "watch": "webpack --watch",
     "serve": "webpack serve --compress --mode=development",
     "prettier": "prettier --write ."
@@ -22,9 +22,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
-    "webpack-bundle-analyzer": "^4.9.0"
-  },
-  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.9.0",
     "@babel/core": "^7.15.0",
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
